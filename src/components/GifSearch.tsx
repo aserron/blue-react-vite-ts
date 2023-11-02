@@ -23,7 +23,7 @@ export function GifSearch({onSearch}: SearchProps) {
         onSearch(query);
     }
 
-    return <section>
+    return <section className={"search"}>
         <form onClick={hdlOnSubmit}>
             <input type="text" onChange={hdlOnChange}/>
             <button type="submit" onClick={hdlOnSubmit}>Search</button>

@@ -14,13 +14,13 @@ export function GifExplorer(props: { onSearch: any, query: string, children: Rea
         })
     }
 
-    const MemoGifSearch = useMemo(
+    const MemoGifAlbum = useMemo(
         () => <GifList query={query}/>,
         [query]
     )
     return <>
         <GifSearch onSearch={onSearch}/>
-        {MemoGifSearch}
+        {MemoGifAlbum}
 
     </>;
 }

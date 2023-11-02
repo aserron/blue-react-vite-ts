@@ -5,7 +5,16 @@ import {GifImage} from "./GifImage/GifImage.tsx";
 
 
 function GifItem(images:Images) {
-    return <li>
+    //
+    // images.reduce((acc, image, idx)=>{
+    //
+    //     row = idx%4
+    //
+    //
+    //     return acc;
+    // },[])
+
+    return <li >
                 <GifImage {...images} />
             </li>
 }
@@ -49,10 +58,42 @@ export function GifList({query}) {
 
     if(!data || data.data.length===0) return null;
 
+
+    data.data.reduce((acc,gif,idx)=>{
+        const colx = 3 % idx;
+        acc[colx] = (acc[colx])?acc[colx]:[];
+
+        acc[colx].push(gif);
+
+        return acc;
+    }
+    ,[])
+
+    // const els = [];
+    // for(let j=0;j<3;j++)
+    // {
+    //     const colx      = (j>0) ? 3 % j : 0;
+    //     const colClass  = `col-4`
+    //     els[j] = <li key={`${j}`} className={`${colClass}`} >
+    //         <GifItem {...(data.data[colx].images)} />
+    //     </li>
+    // }
+    //
+    // <section  className={"layout"}>
+    //     <ul>
+    //         {els.map(v=>v)}
+    //     </ul>
+    // </section>
+
     return <>
-        {data.data.map((it,idx) => {
-            return <GifItem key={`idx${idx}`} {...it.images} />
-        })}
+
+        <section  className={"layout"}>
+        <ul >
+            {data.data.map((it,idx) => {
+                return <GifItem key={`idx${idx}`} {...it.images} />
+            })}
+        </ul>
+        </section>
 
     </>
 
