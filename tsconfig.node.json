@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2022.Error","ES2020", "DOM", "DOM.Iterable"],
+    "noLib": true,
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
