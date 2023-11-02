@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useCallback, useState} from "react";
 
 interface SearchProps {
     onSearch: (query: string) => void,
@@ -8,24 +8,24 @@ export function GifSearch({onSearch}: SearchProps) {
 
     const [query, setQuery] = useState('')
 
-    const hdlOnChange = (ev: InputEvent) => {
+    const hdlOnChange = (s:'') => {
 
-        ev.preventDefault();
+        // ev.preventDefault();
 
         setQuery((prev) => {
-            return ev.target.value
+            return s
         })
     }
 
-    const hdlOnSubmit = (ev: InputEvent) => {
+    const hdlOnSubmit = useCallback((ev) => {
         ev.preventDefault();
         console.warn(`search = ${query}`)
         onSearch(query);
-    }
+    },[query])
 
     return <section className={"search"}>
         <form onClick={hdlOnSubmit}>
-            <input type="text" onChange={hdlOnChange}/>
+            <input type="text" onChange={(ev: InputEvent)=>hdlOnChange(ev.currentTarget.value)}/>
             <button type="submit" onClick={hdlOnSubmit}>Search</button>
         </form>
 

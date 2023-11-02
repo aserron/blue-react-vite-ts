@@ -49,10 +49,13 @@ const useFetchApi = <T>(
         offset
     } = params;
 
-    const parameters = `limit=${limit}&offset=${offset}&q=${query}&api_key=${api_key}`;
+
 
     const fetchData = useCallback(
         async (offset: number) => {
+
+            const parameters = `limit=${limit}&offset=${offset}&q=${query}&api_key=${api_key}`;
+
             setLoading(true);
             setError(null);
 
@@ -82,7 +85,7 @@ const useFetchApi = <T>(
             // Cleanup function to abort the request when the component unmounts or when the offset changes
             return () => controller.abort();
 
-        }, [query,baseUrl, endpoint, limit]);
+        }, [query,limit]);
 
     useEffect(() => {
         // Call fetchData with the current offset

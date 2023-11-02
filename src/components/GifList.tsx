@@ -54,12 +54,10 @@ export function GifList({query}) {
         url:`https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2tjMXh5cjVyc2xxaWh0ZjBwbWpxMjFkcW8xN2E4Z3dsZTA3Y296aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YsTs5ltWtEhnq/giphy.gif`
     }
 
-    const arr = [gif,gif,gif];
-
     if(!data || data.data.length===0) return null;
 
 
-    data.data.reduce((acc,gif,idx)=>{
+    const arranged = data.data.reduce((acc,gif,idx)=>{
         const colx = 3 % idx;
         acc[colx] = (acc[colx])?acc[colx]:[];
 
@@ -68,22 +66,6 @@ export function GifList({query}) {
         return acc;
     }
     ,[])
-
-    // const els = [];
-    // for(let j=0;j<3;j++)
-    // {
-    //     const colx      = (j>0) ? 3 % j : 0;
-    //     const colClass  = `col-4`
-    //     els[j] = <li key={`${j}`} className={`${colClass}`} >
-    //         <GifItem {...(data.data[colx].images)} />
-    //     </li>
-    // }
-    //
-    // <section  className={"layout"}>
-    //     <ul>
-    //         {els.map(v=>v)}
-    //     </ul>
-    // </section>
 
     return <>
 
